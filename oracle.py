@@ -75,7 +75,7 @@ def get_vectorstore(chunks: list, force_rebuild: bool = False):
         shutil.rmtree(chroma_path)
         print(" removed existing chromadb - rebuilding from scratch")
 
-    if chroma_path.exists() and any(chroma_path.iterdir()) and not force_rebuild():
+    if chroma_path.exists() and any(chroma_path.iterdir()) and not force_rebuild:
         print(f" loading existing chromadb from : {chroma_path.resolve()}")
         vectorstore = Chroma(
             collection_name=COLLECTION_NAME,
@@ -207,6 +207,7 @@ def run_Repl(chain)-> None:
         answer = result.get("answer", "")
         source_docs = result.get("source_documents", [])
 
+        print(answer)
         print()
         print_sources(source_docs)
         print()
